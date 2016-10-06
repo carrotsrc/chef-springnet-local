@@ -1,0 +1,23 @@
+server {
+	listen 80;
+	root /home/<%= node[:netnode][:user]; %>/www/public_html;
+	server_name <%= node[:netnode][:sub]; %>.zni.lan;
+        access_log /var/log/nginx/<%= node[:netnode][:sub]; %>.zni.lan_access.log;
+        error_log /var/log/nginx/<%= node[:netnode][:sub]; %>.zni.lan_error.log;
+	index index.php index.htm index.html;
+	location / {
+		try_files $uri $uri/ /index.php?$args;
+	}
+
+	location ~ \.php$ {
+		include fastcgi.conf;
+		try_files			$uri @missing;
+		fastcgi_index 			index.php;
+		fastcgi_intercept_errors 	on;
+		fastcgi_param 			SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		fastcgi_pass   			unix:/run/php-fpm/<%= node[:netnode][:user]; %>.sock;
+	}
+	location @missing {
+		rewrite ^/(.*)$ /index.php?$args;
+	}
+}

@@ -1,0 +1,18 @@
+<?php
+	\SpringDvs\Config::$spec['springname'] = "<%= node[:netnode][:sub] %>";
+	\SpringDvs\Config::$spec['hostname'] = "<%= node[:netnode][:sub] %>.zni.lan";
+	\SpringDvs\Config::$spec['password'] = "abc";
+	\SpringDvs\Config::$spec['token'] = "b7eb89f9d979f18eca9268142c868462";
+
+	\SpringDvs\Config::$net['primary'] = "127.0.0.1";
+	\SpringDvs\Config::$net['hostname'] = "gsn.zni.lan";
+	\SpringDvs\Config::$net['hostres'] = "spring/";
+	\SpringDvs\Config::$net['geosub'] = "local";
+	\SpringDvs\Config::$net['geotop'] = "uk";
+	\SpringDvs\Config::$spec['testing'] = false;
+	
+	\SpringDvs\Config::$sys['store'] = "/home/<%= node[:netnode][:sub] %>/www/gsnstore";
+	\SpringDvs\Config::$sys['store_live'] = "/home/<%= node[:netnode][:sub] %>/www/gsnstore/live";
+	\SpringDvs\Config::$sys['store_test'] = "/home/<%= node[:netnode][:sub] %>/www/gsnstore/test";
+	\SpringDvs\Config::$sys['api_token'] = "356b5dec60319bf6b7ef5bad97308f4a";
+
